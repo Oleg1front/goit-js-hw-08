@@ -1,3 +1,5 @@
+import * as basicLightbox from "basiclightbox";
+
 const images = [
   {
     preview:
@@ -95,3 +97,11 @@ const createImage = () => {
 };
 
 createImage();
+
+gallery.addEventListener("click", (event) => {
+  const linkAnchor = event.target.closest(".gallery-link");
+  if (linkAnchor) {
+    const href = linkAnchor.getAttribute("href");
+    console.log(href);
+  }
+});
