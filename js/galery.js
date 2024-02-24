@@ -1,5 +1,3 @@
-import * as basicLightbox from "basiclightbox";
-
 const images = [
   {
     preview:
@@ -95,13 +93,16 @@ const createImage = () => {
 
   return gallery.append(...imagesArray);
 };
-
 createImage();
 
-gallery.addEventListener("click", (event) => {
-  const linkAnchor = event.target.closest(".gallery-link");
-  if (linkAnchor) {
-    const href = linkAnchor.getAttribute("href");
-    console.log(href);
+const clickOnImage = (event) => {
+  if (event.target.nodeName !== "IMG") {
+    return;
   }
-});
+
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">
+`);
+  instance.show();
+};
+gallery.addEventListener("click", clickOnImage);
